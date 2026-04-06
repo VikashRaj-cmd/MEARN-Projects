@@ -4,8 +4,14 @@ import Quiz from '../models/Quiz.js';
 import { extractTextfromPDF } from '../utils/pdfParser.js';
 import { chunkText } from '../utils/textChunker.js';
 import fs from 'fs/promises';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import mongoose from 'mongoose';
 import Flashcard from '../models/Flashcard.js';
+
+// ADD THIS (__dirname fix for ES modules)
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 //@desc    Upload PDF document
 //@route   POST /api/document/upload
@@ -33,7 +39,8 @@ export const uploadDocument = async (req, res, next) => {
         }
 
         //Connect the URL for upload file
-        const baseUrl = `http://localhost:${process.env.PORT || 8000}`;
+        const baseUrl = process.env.BASE_URL || `http://localhost:${process.env.PORT || 8000}`;
+        // const baseUrl = process.env.BASE_URL;
         const fileUrl = `${baseUrl}/uploads/documents/${req.file.filename}`;
 
         //Create document record
@@ -204,7 +211,14 @@ export const deleteDocument = async (req, res, next) => {
         }
 
         //Delete file from filesystem
-        await fs.unlink(document.filePath).catch(() => {});
+        // await fs.unlink(document.filePath).catch(() => {});
+        //Delete file from filesystem (FIXED)
+        const localPath = document.filePath.split('/uploads/')[1];
+
+        if (localPath) {
+            const fileSystemPath = path.join(__dirname, '../uploads', localPath);
+            await fs.unlink(fileSystemPath).catch(() => {});
+        }
 
         //Delete document
         await document.deleteOne();

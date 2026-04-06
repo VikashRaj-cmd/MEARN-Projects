@@ -44,8 +44,11 @@ Available scripts:
 Create a `.env` file in `Frontend/ai-learning-assistant` if you want to override the backend URL.
 
 ```env
-VITE_API_BASE_URL=http://localhost:8000
+VITE_API_URL=http://localhost:8000
 ```
+For production (Vercel), set:
+
+VITE_API_URL=https://aethron.onrender.com
 
 If not provided, the frontend defaults to `http://localhost:8000`.
 

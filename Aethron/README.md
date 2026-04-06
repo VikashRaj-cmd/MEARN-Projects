@@ -58,7 +58,10 @@ Start the backend:
 npm run dev
 ```
 
-The API runs on `http://localhost:8000` by default.
+The API runs on `http://localhost:8000` locally.
+
+For production, the backend is deployed on:
+`https://aethron.onrender.com`
 
 ### 3. Frontend setup
 
@@ -72,7 +75,7 @@ npm install
 Optionally create a frontend `.env` file:
 
 ```env
-VITE_API_BASE_URL=http://localhost:8000
+Set `VITE_API_URL` to your deployed backend URL (e.g. https://aethron.onrender.com)
 ```
 
 Start the frontend:

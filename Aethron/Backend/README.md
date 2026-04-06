@@ -106,8 +106,11 @@ npm run dev
 ```
 
 Create `.env` from `.env.example`, then start the server.
+- `BASE_URL` (required for production, e.g. https://aethron.onrender.com)
 
-The backend listens on `http://localhost:8000` by default.
+The backend listens on `http://localhost:8000` locally.
+
+In production, it uses the deployed URL defined in `BASE_URL`.
 
 ## Notes
 
