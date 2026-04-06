@@ -27,13 +27,24 @@ const app = express();
 connectDB();
 
 //Middleware to handle CORS
+// app.use(
+//     cors({
+//         origin: "*",
+//         methods:["GET", "POST", "PUT", "DELETE"],
+//         allowedHeaders:["Content-Type", "Authorization"],
+//         credentials: true,
+//     })
+// );
 app.use(
-    cors({
-        origin: "*",
-        methods:["GET", "POST", "PUT", "DELETE"],
-        allowedHeaders:["Content-Type", "Authorization"],
-        credentials: true,
-    })
+  cors({
+    origin: [
+      "http://localhost:5173",              // local frontend dev
+      "https://aethron.vercel.app"         // REPLACE with your final Vercel URL
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
+  })
 );
 
 app.use(express.json());
