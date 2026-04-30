@@ -21,7 +21,12 @@ useEffect(() => {
   const fetchQuiz = async () => {
     try {
       const response = await quizService.getQuizById(quizId);
-      setQuiz(response.data);
+      const quizData = response.data;
+      if (quizData?.completedAt) {
+        navigate(`/quizzes/${quizId}/results`, { replace: true });
+        return;
+      }
+      setQuiz(quizData);
     } catch (error) {
       toast.error('Failed to fetch quiz.');
       console.log(error);

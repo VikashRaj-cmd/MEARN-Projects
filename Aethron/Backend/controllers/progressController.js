@@ -43,7 +43,7 @@ export const getDashboard = async (req, res, next) => {
             .sort({ createdAt: -1 })
             .limit(5)
             .populate('documentId', 'title')
-            .select('title score totalQuestions createdAt');
+            .select('title score totalQuestions createdAt completedAt');
 
         //Study streak (simplified - in production, track daily activity)
         const studyStreak = Math.floor(Math.random() * 7) + 1;  // Mock data

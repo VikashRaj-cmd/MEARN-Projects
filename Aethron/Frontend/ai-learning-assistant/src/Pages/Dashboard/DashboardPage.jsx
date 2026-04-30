@@ -129,7 +129,7 @@ const DashboardPage = () => {
                   id: quiz._id,
                   description: quiz.title,
                   timestamp: quiz.createdAt,
-                  link: `/quizzes/${quiz._id}`,
+                  link: quiz.completedAt ? `/quizzes/${quiz._id}/results` : `/quizzes/${quiz._id}`,
                   type: 'Quiz'
                 }))
 
