@@ -214,21 +214,18 @@ export const deleteDocument = async (req, res, next) => {
         //Delete file from filesystem
         // await fs.unlink(document.filePath).catch(() => {});
         //Delete file from filesystem (FIXED)
-        const localPath = document.filePath.split('/uploads/')[1];
-        if (localPath) {
-            const fileSystemPath = path.join(__dirname, '../uploads', localPath);  // Dynamically adjust path
-            await fs.unlink(fileSystemPath).catch(() => {});
+        // Fix file path construction in deleteDocument
+    const localPath = document.filePath.split('/uploads/')[1];  // Get the relative path from the file URL
+    if (localPath) {
+        // Ensure the fileSystemPath is built correctly
+        const fileSystemPath = path.join(__dirname, '../uploads', localPath);
+
+        try {
+            // Check if the file exists before attempting to delete
+            await fs.unlink(fileSystemPath);
+            console.log('File deleted at path:', fileSystemPath);
+        } catch (err) {
+            console.error('Error deleting file at path:', fileSystemPath, err);
         }
-        console.log('Deleting file at path:', fileSystemPath);
-
-        //Delete document
-        await document.deleteOne();
-
-        res.status(200).json({
-            success: true,
-            message: 'Document deleted successfully'
-        });
-    } catch (error) {
-        next(error);
     }
 };
