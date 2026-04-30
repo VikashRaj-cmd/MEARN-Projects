@@ -38,8 +38,8 @@ connectDB();
 app.use(
   cors({
     origin: [
-      "http://localhost:5173",              // local frontend dev
-      "https://aethron.vercel.app"         // REPLACE with your final Vercel URL
+      'http://localhost:5173',              // Local frontend dev URL
+      'https://aethron.vercel.app',         // Production frontend URL (Vercel)
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
@@ -52,7 +52,7 @@ app.use(express.urlencoded({ extended: true }));
 
 
 //static folder for uploads
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+console.log('Serving files from:', path.join(__dirname, 'uploads'));
 
 //Routes
 app.use('/api/auth', authRoutes)

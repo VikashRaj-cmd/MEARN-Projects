@@ -39,9 +39,10 @@ export const uploadDocument = async (req, res, next) => {
         }
 
         //Connect the URL for upload file
-        const baseUrl = process.env.BASE_URL || `http://localhost:${process.env.PORT || 8000}`;
-        // const baseUrl = process.env.BASE_URL;
+        const baseUrl = process.env.BASE_URL || `http://localhost:${process.env.PORT || 8000}`;  // For local
+        // Make sure BASE_URL is defined in the .env for production (for example on Render)
         const fileUrl = `${baseUrl}/uploads/documents/${req.file.filename}`;
+        console.log('Uploaded file URL:', fileUrl);
 
         //Create document record
         const document = await Document.create({
@@ -214,11 +215,11 @@ export const deleteDocument = async (req, res, next) => {
         // await fs.unlink(document.filePath).catch(() => {});
         //Delete file from filesystem (FIXED)
         const localPath = document.filePath.split('/uploads/')[1];
-
         if (localPath) {
-            const fileSystemPath = path.join(__dirname, '../uploads', localPath);
+            const fileSystemPath = path.join(__dirname, '../uploads', localPath);  // Dynamically adjust path
             await fs.unlink(fileSystemPath).catch(() => {});
         }
+        console.log('Deleting file at path:', fileSystemPath);
 
         //Delete document
         await document.deleteOne();
