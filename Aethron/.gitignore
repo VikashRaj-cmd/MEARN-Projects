@@ -20,8 +20,9 @@ Backend/uploads/*
 !Backend/uploads/documents/
 !Backend/uploads/documents/.gitkeep
 
-# Deployment guide (local reference only)
+# Local reference files (not for GitHub)
 DEPLOYMENT_GUIDE.txt
+PROJECT_DOCS.md
 
 # Logs
 *.log
