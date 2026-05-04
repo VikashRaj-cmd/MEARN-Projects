@@ -34,25 +34,12 @@ const DocumentDetailPage = () => {
     fetchDocumentDetails();
   }, [id]);
 
-  //Helper function to get the full PDF URL
   const getPdfUrl = () => {
-  if (!document?.data?.filePath) return null;
-
+    if (!document?.data?.filePath) return null;
     const filePath = document.data.filePath;
-    console.log('Generated PDF URL:', filePath);  // Log the file path for debugging
-
-    // If the file path is already an absolute URL, return it directly
-    if (filePath.startsWith('http://') || filePath.startsWith('https://')) {
-      return filePath;
-    }
-
-    // const baseUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000';
-    // Use the correct base URL depending on whether in dev or prod
-    const baseUrl = import.meta.env.MODE === 'development'
-      ? import.meta.env.VITE_API_URL || 'http://localhost:8000'
-      : import.meta.env.VITE_API_URL_PRODUCTION || 'https://aethron.onrender.com'; // Use production URL in deployment
-
-    return `${baseUrl}${filePath.startsWith('/') ? '' : '/'}${filePath}`;
+    if (filePath.startsWith('http://') || filePath.startsWith('https://')) return filePath;
+    const baseUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+    return `${baseUrl}${filePath}`;
   };
 
   const renderContent = () => {

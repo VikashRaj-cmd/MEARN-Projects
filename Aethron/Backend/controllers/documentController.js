@@ -38,11 +38,7 @@ export const uploadDocument = async (req, res, next) => {
             });
         }
 
-        //Connect the URL for upload file
-        const baseUrl = process.env.BASE_URL || `http://localhost:${process.env.PORT || 8000}`;  // For local
-        // Make sure BASE_URL is defined in the .env for production (for example on Render)
-        const fileUrl = `${baseUrl}/uploads/documents/${req.file.filename}`;
-        console.log('Uploaded file URL:', fileUrl);
+        const fileUrl = `/uploads/documents/${req.file.filename}`;
 
         //Create document record
         const document = await Document.create({

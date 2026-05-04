@@ -16,7 +16,12 @@ Frontend/ai-learning-assistant/node_modules/
 Frontend/ai-learning-assistant/dist/
 
 # Local uploads and generated files
-Backend/uploads/
+Backend/uploads/*
+!Backend/uploads/documents/
+!Backend/uploads/documents/.gitkeep
+
+# Deployment guide (local reference only)
+DEPLOYMENT_GUIDE.txt
 
 # Logs
 *.log
