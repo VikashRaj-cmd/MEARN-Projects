@@ -8,6 +8,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import mongoose from 'mongoose';
 import Flashcard from '../models/Flashcard.js';
+import ChatHistory from '../models/ChatHistory.js';
 
 // ADD THIS (__dirname fix for ES modules)
 const __filename = fileURLToPath(import.meta.url);
@@ -221,6 +222,13 @@ export const deleteDocument = async (req, res, next) => {
                 console.error('Error deleting file at path:', fileSystemPath, err);
             }
         }
+
+        // Delete all related data
+        await Promise.all([
+            Flashcard.deleteMany({ documentId: document._id }),
+            Quiz.deleteMany({ documentId: document._id }),
+            ChatHistory.deleteMany({ documentId: document._id }),
+        ]);
 
         // Delete document record from the database
         await document.deleteOne();

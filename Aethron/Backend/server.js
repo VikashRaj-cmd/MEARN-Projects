@@ -52,7 +52,7 @@ app.use(express.urlencoded({ extended: true }));
 
 
 //static folder for uploads
-console.log('Serving files from:', path.join(__dirname, 'uploads'));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 //Routes
 app.use('/api/auth', authRoutes)
