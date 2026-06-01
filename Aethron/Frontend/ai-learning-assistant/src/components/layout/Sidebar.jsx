@@ -62,12 +62,12 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
                 <NavLink 
                   key={link.to}
                   to={link.to}
-                  onClick={toggleSidebar}
-                  className={({ isActive}) => 
+                  onClick={() => { if(isSidebarOpen) toggleSidebar(); }}
+                  className={({ isActive}) =>
                     `group flex items-center gap-3 px-4 py-2.5 text-sm font-semibold rounded-xl transition-all duration-200 ${
                       isActive
-                        ? 'bg-linear-to-r from-emerald-500 to-teal-500 text-white shadow-lg shadow-emerald-500/25'
-                        : 'text-slate-700 hover:bg-slate-100 hover:text-slate-900'
+                        ? 'bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-lg shadow-emerald-500/25'
+                        : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
                     }`
                   }
                 >
@@ -106,3 +106,4 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
 }
 
 export default Sidebar
+

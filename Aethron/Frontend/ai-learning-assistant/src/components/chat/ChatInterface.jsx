@@ -130,16 +130,14 @@ const ChatInterface = () => {
             )}
             <div ref={messageEndRef}  />
             {loading && (
-                <div className="flex items-center gap-3 my-4">
-                    <div className="w-9 h-9 rounded-xl bg-linear-to-br from-emerald-400 to-teal-500 shadow-lg shadow-emerald-500/25 flex items-center justify-center shrink-0">
+                <div className="flex items-start gap-3 my-4">
+                    <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-400 to-teal-500 shadow-lg shadow-emerald-500/25 flex items-center justify-center shrink-0">
                         <Sparkles className="w-4 h-4 text-white" strokeWidth={2} />
                     </div>
-                    <div className="flex items-center gap-3 my-4">
-                        <div className="w-9 h-9 rounded-2xl rounded-bl-md bg-white border border-slate-200/60">
-                            <span className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></span>
-                            <span className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: '50ms' }}></span>
-                            <span className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></span>
-                        </div>
+                    <div className="flex items-center gap-1.5 px-4 py-3 bg-white border border-slate-200/60 rounded-2xl rounded-bl-md shadow-sm">
+                        <span className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
+                        <span className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
+                        <span className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
                     </div>
                 </div>
             )}

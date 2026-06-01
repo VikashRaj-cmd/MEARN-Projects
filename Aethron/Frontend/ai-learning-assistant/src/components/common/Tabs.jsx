@@ -16,7 +16,7 @@ const Tabs = ({tabs, activeTab, setActiveTab}) => {
              }`}
             >
               <span className="relative z-10">{tab.label}</span>
-              {activeTab == tab.name && (
+              {activeTab === tab.name && (
                 <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full shadow-lg shadow-emerald-500/25" />
               )}
               {activeTab === tab.name && (
